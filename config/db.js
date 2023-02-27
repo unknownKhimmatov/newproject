@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const urlDB = "mongodb+srv://firdavsbackend:firdavsbackend2023@firdavsglobalbackend.cmtuqdr.mongodb.net/?retryWrites=true&w=majority";
+const urlDB = "mongodb://localhost:27017/forMT";
 const connect = async () => {
   try {
     const connectDB = await mongoose.connect(urlDB, {

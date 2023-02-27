@@ -14,25 +14,15 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-  },
-  age: {
-    type: Number,
-  },
-  discription: {
-    type: String,
-  },
-  instagram: {
-    type: String
-  },
-  telefram: {
-    type: String
-  },
-  sinf: {
-    type: String
-  },
+    require: true
 
+  },
+  group: {
+    type: String,
+    require: true
+  }
 }, {
   timestamps: true,
 });
 
-module.exports = mongoose.model("jasur", userSchema);
+module.exports = mongoose.model("forMT", userSchema);

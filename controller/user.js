@@ -1,6 +1,6 @@
 const User = require("../models/user");
-const fs = require("fs");
 const path = require("path");
+
 
 
 const postUser = async (req, res) => {
@@ -10,27 +10,19 @@ const postUser = async (req, res) => {
       firstName,
       email,
       phone,
-      age,
-      discription,
-      telegram,
-      instagram,
-      sinf
+      group
     } = req.body;
 
 
 
-    
+
     if (lastName || firstName) {
       const createUser = new User({
         lastName,
         firstName,
         email,
         phone,
-        age,
-        discription,
-        telegram,
-        instagram,
-        sinf
+        group
       });
       await createUser.save();
       res.json({
@@ -119,72 +111,10 @@ const deleteUserById = async (req, res) => {
 
 
 
-// update user by id
-const updateUserById = async (req, res) => {
-  try {
-    const {
-      id
-    } = req.query;
-    const {
-      lastName,
-      firstName,
-      email,
-      phone,
-      age,
-      discription,
-      telegram,
-      instagram,
-      sinf
-    } = req.body;
-    const user = await User.findById({
-      _id: id
-    });
-    if (user) {
-      (user.lastName = lastName),
-      (user.firstName = firstName),
-      (user.email = email),
-      (user.phone = phone);
-      (user.age = age);
-      (user.discription = discription);
-      (user.instagram = instagram);
-      (user.telefram = telegram);
-      (user.sinf = sinf)
-      await user
-        .save()
-        .then(() =>
-          res.json({
-            success: true,
-            data: user,
-            message: "malumot uzgartirildi",
-          })
-        )
-        .catch(() =>
-          res.json({
-            success: false,
-            message: "malumot uzgartirilmadi"
-          })
-        );
-    } else {
-      res.json({
-        success: false,
-        message: "bunday idga ega malumot yuq"
-      });
-    }
-  } catch (error) {
-    res.json({
-      success: false,
-      message: "bunday idga ega malumot yuq"
-    });
-    console.log("====================================");
-    console.log("error", error);
-    console.log("====================================");
-  }
-};
 
 module.exports = {
   postUser,
   getUsers,
   deleteUserById,
-  updateUserById,
   getUserId
 };
